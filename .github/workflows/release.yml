@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*"
+
+  workflow_dispatch:
+
+jobs:
+  build_deb:
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run build script
+        run: MY_UID="root" MY_GID="root" ./docker-run.sh "cd data && ./bluez-5.79.sh"
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            bluez/*.deb
+          draft: true

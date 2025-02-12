@@ -11,3 +11,16 @@ To build:
 ```
 MY_UID="root" MY_GID="root" ./docker-run.sh "cd data && ./bluez-5.79.sh"
 ```
+
+To build interactively in container:
+
+```
+MY_UID="root" MY_GID="root" docker compose run --rm cli
+```
+
+```
+cd /data
+```
+
+And you can run the 'bluez-5.79.sh' script directly.
+
